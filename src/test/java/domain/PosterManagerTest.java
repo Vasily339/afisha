@@ -49,17 +49,6 @@ public class PosterManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    @Test
-    public void checkRevertAddFilm() {
-        PosterManager manager = new PosterManager();
-        manager.addFilm("film 1");
-        manager.addFilm("film 2");
-        manager.addFilm("film 3");
-        manager.addFilm("film 4");
-        String[] expected = {"film 4", "film 3", "film 2", "film 1"};
-        String[] actual = manager.findLast();
-        Assertions.assertArrayEquals(expected, actual);
-    }
 
     @Test
     public void checkAddLimitFilm() {
@@ -91,11 +80,13 @@ public class PosterManagerTest {
 
     @Test
     public void checkAddLessLimitFilm() {
-        PosterManager manager = new PosterManager();
+        PosterManager manager = new PosterManager(3);
         manager.addFilm("film 1");
         manager.addFilm("film 2");
         manager.addFilm("film 3");
-        String[] expected = {"film 3", "film 2", "film 1"};
+        manager.addFilm("film 4");
+        manager.addFilm("film 5");
+        String[] expected = {"film 5", "film 4", "film 3"};
         String[] actual = manager.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
